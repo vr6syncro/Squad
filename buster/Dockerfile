@@ -1,19 +1,19 @@
 ############################################################
 # Dockerfile that builds a Squad Gameserver
 ############################################################
-FROM cm2network/steamcmd:root
+FROM diedosen/steamcmd:latest
 
-LABEL maintainer="walentinlamonos@gmail.com"
+LABEL maintainer="info@die-dosen.de"
 
 ENV STEAMAPPID 403240
 ENV STEAMAPP squad
 ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}-dedicated"
-ENV DLURL https://raw.githubusercontent.com/CM2Walki/Squad
+ENV DLURL https://raw.githubusercontent.com/vr6syncro/Squad
 
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
-		wget=1.20.1-1.1 \
+		wget \
 	&& wget "${DLURL}/master/etc/entry.sh" -O "${HOMEDIR}/entry.sh" \
 	&& mkdir -p "${STEAMAPPDIR}" \
 	&& chmod 755 "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" \
