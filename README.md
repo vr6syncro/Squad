@@ -15,19 +15,19 @@ This Docker image contains the dedicated server of the game. <br/>
 ## Hosting a simple game server
 Running on the *host* interface (recommended):<br/>
 ```console
-$ docker run -d --net=host -v /home/steam/squad-dedicated/ --name=squad-dedicated cm2network/squad
+$ docker run -d --net=host -v /home/steam/squad-dedicated/ --name=squad-dedicated diedosen/squadserver
 ```
 
 Running using a bind mount for data persistence on container recreation:
 ```console
 $ mkdir -p $(pwd)/squad-data
 $ chmod 777 $(pwd)/squad-data # Makes sure the directory is writeable by the unprivileged container user
-$ docker run -d --net=host -v $(pwd)/squad-data:/home/steam/squad-dedicated/ --name=squad-dedicated cm2network/squad
+$ docker run -d --net=host -v $(pwd)/squad-data:/home/steam/squad-dedicated/ --name=squad-dedicated diedosen/squadserver
 ```
 
 Running multiple instances (iterate PORT, QUERYPORT and RCONPORT):<br/>
 ```console
-$ docker run -d --net=host -v /home/steam/squad-dedicated/ -e PORT=7788 -e QUERYPORT=27166 -e RCONPORT=21115 --name=squad-dedicated2 cm2network/squad
+$ docker run -d --net=host -v /home/steam/squad-dedicated/ -e PORT=7788 -e QUERYPORT=27166 -e RCONPORT=21115 --name=squad-dedicated2 diedosen/squadserver
 ```
 
 **It's also recommended using "--cpuset-cpus=" to limit the game server to a specific core & thread.**<br/>
